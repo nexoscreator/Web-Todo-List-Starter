@@ -1,12 +1,12 @@
-![GitHub Pages](https://img.shields.io/github/deployments/noscreator/todo-list-app/github-pages.svg?style=flat-square&color=cyan)
-![GitHub Latest Release](https://img.shields.io/github/v/release/noscreator/todo-list-app.svg?style=flat-square&color=cyan)
-![GitHub License](https://img.shields.io/github/license/noscreator/todo-list-app.svg?style=flat-square&color=cyan)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/noscreator/todo-list-app.svg?style=flat-square&color=cyan)
+![GitHub Pages](https://img.shields.io/github/deployments/nexoscreator/Web-Todo-List-Starter/github-pages.svg?style=flat-square&color=cyan)
+![GitHub Latest Release](https://img.shields.io/github/v/release/nexoscreator/Web-Todo-List-Starter.svg?style=flat-square&color=cyan)
+![GitHub License](https://img.shields.io/github/license/nexoscreator/Web-Todo-List-Starter.svg?style=flat-square&color=cyan)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/nexoscreator/Web-Todo-List-Starter.svg?style=flat-square&color=cyan)
 
 ---
 
 ### To-Do List App
-![img](https://github.com/noscreator/todo-list-app)
+![img](https://opengraph.githubassets.com/dd0ef0f2d640a010eb5d0a97bd726054dff17575ea3c2548cec580320c84aa47/nexoscreator/Web-Todo-List-Starter)
 
 This is a simple web-based To-Do list application where users can add, edit, and delete tasks. It also includes a search functionality to filter tasks based on their descriptions. The app uses HTML, CSS, and JavaScript for the frontend, with localStorage for data persistence.
 
@@ -23,7 +23,7 @@ This is a simple web-based To-Do list application where users can add, edit, and
 
 ### Links
 [![Web Demo](https://img.shields.io/badge/Web-Demo-blue?style=for-the-badge&logo=google-chrome)](https://noscreator.github.io/todo-list-app)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-green?style=for-the-badge&logo=github)](https://github.com/noscreator/todo-list-app)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-green?style=for-the-badge&logo=github)](https://github.com/nexoscreator/Web-Todo-List-Starter)
 [![YouTube Video](https://img.shields.io/badge/YouTube-Video-red?style=for-the-badge&logo=youtube)](https://youtu.be/rMnDe0iEGRs?si=B2viVesOhHYusbBG)
 
 ---
@@ -33,7 +33,7 @@ Provide step-by-step instructions on how to install and set up your project.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/noscreator/todo-list-app.git
+   git clone https://github.com/nexoscreator/Web-Todo-List-Starter.git
    ```
 2. Open `index.html` in your preferred web browser.
 3. You can start adding tasks immediately. No additional setup or installation is required.
