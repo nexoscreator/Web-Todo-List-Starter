@@ -18,6 +18,7 @@
   --text: #666;
   --heading: #111;
 
+  --pri-bg: #fff;
   --alt-bg: #F7f7f7;
   --drk-bg: #333C44;
   --lines: #EEE;
@@ -35,7 +36,7 @@
 body {
   font-family: var(--fontA);
   font-weight: 400;
-  background-color: #fff;
+  background-color: var(--pri-bg);
   color: var(--text);
   line-height: 1.6;
   padding: 20px;
@@ -149,8 +150,11 @@ button {
 }
 
 .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--accent);
-  padding: 8px 12px;
+  padding: 14px;
   border-radius: 50%;
 }
 
@@ -183,17 +187,20 @@ button {
 
 .menu-list {
   display: none;
+  width: 110px;
   position: absolute;
-  top: 20px;
+  top: 25px;
   right: 0;
-  background: white;
-  border: 1px solid #ccc;
+  background: var(--pri-bg);
+  border: 1px solid var(--lines);
+  border-radius: 8px;
   list-style-type: none;
   padding: 0;
   margin: 0;
+  z-index: 2;
 }
 
-.menu-input:checked + .menu-label + .menu-list {
+.menu-input:checked+.menu-label+.menu-list {
   display: block;
 }
 
@@ -203,7 +210,7 @@ button {
 }
 
 .menu-list li:hover {
-  background: #f0f0f0;
+  background: var(--alt-bg);
 }
 
 
@@ -232,7 +239,6 @@ button:hover {
 
 /* dark mode */
 .dark-mode {
-  /* Dark mode styles */
   background-color: var(--heading);
   color: var(--alt-bg);
 }
@@ -258,6 +264,15 @@ button:hover {
 .dark-mode form {
   background: var(--drk-bg);
   border-color: var(--text);
+}
+
+.dark-mode .menu-list {
+  background: var(--drk-bg);
+  border-color: var(--text);
+}
+
+.dark-mode .menu-list li:hover {
+  background: var(--heading);
 }
 
 
