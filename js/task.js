@@ -23,17 +23,6 @@ function addTask(description) {
   renderTasks(); // Update the UI
 }
 
-
-// Edit Task function
-function editTask(id, newDescription) {
-  const index = tasks.findIndex(task => task.id === id); // Find task index by ID
-  if (index !== -1) {
-    tasks[index].description = newDescription; // Update task description
-    saveTasks(); // Save tasks to localStorage
-    renderTasks(); // Update the UI
-  }
-}
-
 // Toggle Completion function
 function toggleCompletion(id) {
   const index = tasks.findIndex(task => task.id === id); // Find task index by ID
@@ -44,11 +33,40 @@ function toggleCompletion(id) {
   }
 }
 
-// Delete Task function
+
+function moveTaskUp(id) {
+  const index = tasks.findIndex(task => task.id === id);
+  if (index > 0) {
+    const [task] = tasks.splice(index, 1);
+    tasks.splice(index - 1, 0, task);
+    saveTasks();
+    renderTasks();
+  }
+}
+
+function moveTaskDown(id) {
+  const index = tasks.findIndex(task => task.id === id);
+  if (index < tasks.length - 1) {
+    const [task] = tasks.splice(index, 1);
+    tasks.splice(index + 1, 0, task);
+    saveTasks();
+    renderTasks();
+  }
+}
+
+function editTask(id) {
+  const taskElement = document.getElementById(`task-${id}`);
+  const description = taskElement.querySelector('p');
+  const editInput = taskElement.querySelector('.edit-input');
+  description.style.display = 'none';
+  editInput.style.display = 'inline-block';
+  editInput.focus();
+}
+
 function deleteTask(id) {
-  tasks = tasks.filter(task => task.id !== id); // Remove task from tasks array
-  saveTasks(); // Save tasks to localStorage
-  renderTasks(); // Update the UI
+  tasks = tasks.filter(task => task.id !== id);
+  saveTasks();
+  renderTasks();
 }
 
 // Function to save tasks to localStorage
@@ -81,7 +99,6 @@ function createTaskElement(task) {
   }
   taskElement.appendChild(description);
 
-  // Add input field for editing task description
   const editInput = document.createElement('input');
   editInput.type = '';
   editInput.value = task.description;
@@ -92,62 +109,45 @@ function createTaskElement(task) {
     if (event.key === 'Enter') {
       const newDescription = editInput.value.trim();
       if (newDescription !== '') {
-        editTask(task.id, newDescription); // Call editTask function
+        editTask(task.id, newDescription);
       } else {
         alert('Task description cannot be empty.');
-        editInput.value = task.description; // Reset input value
+        editInput.value = task.description;
       }
     }
   });
   taskElement.appendChild(editInput);
 
+  const taskMenu = document.createElement('div');
+  taskMenu.classList.add('task-menu');
+  taskMenu.innerHTML = `
+    <input class="menu-input" type="checkbox" id="menu-${task.id}" />
+    <label class="menu-label" for="menu-${task.id}">•••</label>
+    <ul class="menu-list">
+      <li onclick="moveTaskUp(${task.id})">Up Task</li>
+      <li onclick="editTask(${task.id})">Edit Task</li>
+      <li onclick="moveTaskDown(${task.id})">Down Task</li>
+      <li onclick="deleteTask(${task.id})">Delete Task</li>
+    </ul>
+  `;
+  taskElement.appendChild(taskMenu);
 
-  const taskmenu = document.createElement('div');
-  taskmenu.classList.add('task-menu');
-  taskmenu.innerHTML = `<input class="menu-input" type="checkbox" id="${task.id}" />
-  <label class="menu-label" for="${task.id}">•••</label>`;
-  taskElement.appendChild(taskmenu);
-
-
-  const menulist = document.createElement('ul');
-  taskmenu.appendChild(menulist);
-
-  const uptask = document.createElement('li');
-  uptask.innerHTML = `Up Task`;
-  menulist.appendChild(uptask);
-
-  const edittask = document.createElement('li');
-  edittask.innerHTML = `Edit task`;
-  menulist.appendChild(edittask);
-
-  const downtask = document.createElement('li');
-  downtask.innerHTML = `Down task`;
-  menulist.appendChild(downtask);
-
-
-
-  const deleteButton = document.createElement('li');
-  deleteButton.innerHTML = `delete task`;
-  deleteButton.addEventListener('click', () => deleteTask(task.id));
-  menulist.appendChild(deleteButton);
-
-
-  // Event listener for double-click to edit task description
   description.addEventListener('dblclick', () => {
     description.style.display = 'none';
     editInput.style.display = 'inline-block';
     editInput.focus();
   });
 
-  // Event listener to save changes when input field loses focus
   editInput.addEventListener('blur', () => {
     const newDescription = editInput.value.trim();
     if (newDescription !== '') {
-      editTask(task.id, newDescription); // Call editTask function
+      editTask(task.id, newDescription);
     } else {
       alert('Task description cannot be empty.');
-      editInput.value = task.description; // Reset input value
+      editInput.value = task.description;
     }
+    editInput.style.display = 'none';
+    description.style.display = 'inline-block';
   });
 
   return taskElement;
@@ -209,15 +209,17 @@ const searchInput = document.getElementById('searchInput');
 
 // Add event listener to the search input for capturing user input
 searchInput.addEventListener('input', function() {
+  const searchTerm = searchInput.value.toLowerCase(); // Get the search term and convert it to lowercase
 
   // Filter tasks based on the search term
   const filteredTasks = tasks.filter(task => {
-    return task.description.toLowerCase().includes(searchInput); // Check if task description contains the search term
+    return task.description.toLowerCase().includes(searchTerm); // Check if task description contains the search term
   });
 
   // Update the displayed task list with the filtered tasks
   displayTasks(filteredTasks);
 });
+
 
 
 // Show search form when button is clicked

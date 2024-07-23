@@ -167,36 +167,45 @@ button {
   font-size: 16px;
 }
 
+
+/* menu list */
 .task-menu {
   position: relative;
-
-}
-
-.task-menu ul {
-  display: none;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 100px;
-  border: 1px solid #000000;
-  border-radius: 4px;
-  background: #fff;
-  padding: 10px 5px;
-  color: #000;
-  list-style: none;
 }
 
 .menu-input {
   display: none;
 }
 
-.menu-input:checked+.task-menu ul {
+.menu-label {
+  cursor: pointer;
+}
+
+.menu-list {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-input:checked + .menu-label + .menu-list {
   display: block;
 }
 
-.task-menu li {
-  margin: 0;
+.menu-list li {
+  padding: 10px;
+  cursor: pointer;
 }
+
+.menu-list li:hover {
+  background: #f0f0f0;
+}
+
 
 
 @keyframes fadeIn {
