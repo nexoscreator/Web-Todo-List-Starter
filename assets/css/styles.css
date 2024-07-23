@@ -213,8 +213,7 @@ button {
   background: var(--alt-bg);
 }
 
-
-
+/* animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -223,6 +222,49 @@ button {
   to {
     opacity: 1;
   }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.task.add {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.task.up {
+  animation: slideUp 0.3s ease-in-out;
+}
+
+.task.down {
+  animation: slideDown 0.3s ease-in-out;
+}
+
+.task.delete {
+  animation: fadeOut 0.3s ease-in-out;
 }
 
 /* Hover effects */

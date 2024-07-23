@@ -21,7 +21,17 @@ function addTask(description) {
   tasks.push(task); // Add task to the tasks array
   saveTasks(); // Save tasks to localStorage
   renderTasks(); // Update the UI
+
+  // Find the newly added task element and add the animation class
+  const taskElement = document.getElementById(`task-${id}`);
+  taskElement.classList.add('add');
+
+  // Remove the animation class after the animation completes
+  setTimeout(() => {
+    taskElement.classList.remove('add');
+  }, 500); // Match the duration of the animation
 }
+
 
 // Toggle Completion function
 function toggleCompletion(id) {
@@ -33,27 +43,40 @@ function toggleCompletion(id) {
   }
 }
 
-
 function moveTaskUp(id) {
   const index = tasks.findIndex(task => task.id === id);
   if (index > 0) {
-    const [task] = tasks.splice(index, 1);
-    tasks.splice(index - 1, 0, task);
-    saveTasks();
-    renderTasks();
+    const taskElement = document.getElementById(`task-${id}`);
+    const previousTaskElement = document.getElementById(`task-${tasks[index - 1].id}`);
+    taskElement.classList.add('up');
+    previousTaskElement.classList.add('down');
+    setTimeout(() => {
+      const [task] = tasks.splice(index, 1);
+      tasks.splice(index - 1, 0, task);
+      saveTasks();
+      renderTasks();
+    }, 300); // Wait for the animation to complete
   }
 }
 
+// Function to move tasks
 function moveTaskDown(id) {
   const index = tasks.findIndex(task => task.id === id);
   if (index < tasks.length - 1) {
-    const [task] = tasks.splice(index, 1);
-    tasks.splice(index + 1, 0, task);
-    saveTasks();
-    renderTasks();
+    const taskElement = document.getElementById(`task-${id}`);
+    const nextTaskElement = document.getElementById(`task-${tasks[index + 1].id}`);
+    taskElement.classList.add('down');
+    nextTaskElement.classList.add('up');
+    setTimeout(() => {
+      const [task] = tasks.splice(index, 1);
+      tasks.splice(index + 1, 0, task);
+      saveTasks();
+      renderTasks();
+    }, 300); // Wait for the animation to complete
   }
 }
 
+// Function to edit tasks
 function editTask(id) {
   const taskElement = document.getElementById(`task-${id}`);
   const description = taskElement.querySelector('p');
@@ -63,10 +86,15 @@ function editTask(id) {
   editInput.focus();
 }
 
+// Function to delete tasks
 function deleteTask(id) {
-  tasks = tasks.filter(task => task.id !== id);
-  saveTasks();
-  renderTasks();
+  const taskElement = document.getElementById(`task-${id}`);
+  taskElement.classList.add('delete');
+  setTimeout(() => {
+    tasks = tasks.filter(task => task.id !== id);
+    saveTasks();
+    renderTasks();
+  }, 300); // Wait for the animation to complete
 }
 
 // Function to save tasks to localStorage
@@ -80,7 +108,6 @@ function loadTasks() {
   return storedTasks ? JSON.parse(storedTasks) : [];
 }
 
-// Function to create task HTML element
 function createTaskElement(task) {
   const taskElement = document.createElement('li');
   taskElement.id = `task-${task.id}`;
