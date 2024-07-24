@@ -1,6 +1,3 @@
-A simple and interactive To-Do List application built with HTML, CSS, and JavaScript. This application allows users to add, edit, search, and delete tasks while supporting a dark mode feature.
-
-
 ![GitHub Pages](https://img.shields.io/github/deployments/nexoscreator/Web-Todo-List-Starter/github-pages.svg?style=flat-square&color=cyan)
 ![GitHub Latest Release](https://img.shields.io/github/v/release/nexoscreator/Web-Todo-List-Starter.svg?style=flat-square&color=cyan)
 ![GitHub License](https://img.shields.io/github/license/nexoscreator/Web-Todo-List-Starter.svg?style=flat-square&color=cyan)
