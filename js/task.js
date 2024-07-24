@@ -24,14 +24,8 @@ function addTask(description) {
 
   // Find the newly added task element and add the animation class
   const taskElement = document.getElementById(`task-${id}`);
-  taskElement.classList.add('add');
-
-  // Remove the animation class after the animation completes
-  setTimeout(() => {
-    taskElement.classList.remove('add');
-  }, 500); // Match the duration of the animation
+  animateTask(taskElement, 'add');
 }
-
 
 // Toggle Completion function
 function toggleCompletion(id) {
@@ -48,13 +42,15 @@ function moveTaskUp(id) {
   if (index > 0) {
     const taskElement = document.getElementById(`task-${id}`);
     const previousTaskElement = document.getElementById(`task-${tasks[index - 1].id}`);
-    taskElement.classList.add('up');
-    previousTaskElement.classList.add('down');
+
+    animateTask(taskElement, 'up');
+    animateTask(previousTaskElement, 'down');
+
     setTimeout(() => {
       const [task] = tasks.splice(index, 1);
       tasks.splice(index - 1, 0, task);
       saveTasks();
-      renderTasks();
+      updateTaskList();
     }, 300); // Wait for the animation to complete
   }
 }
@@ -65,13 +61,15 @@ function moveTaskDown(id) {
   if (index < tasks.length - 1) {
     const taskElement = document.getElementById(`task-${id}`);
     const nextTaskElement = document.getElementById(`task-${tasks[index + 1].id}`);
-    taskElement.classList.add('down');
-    nextTaskElement.classList.add('up');
+
+    animateTask(taskElement, 'down');
+    animateTask(nextTaskElement, 'up');
+
     setTimeout(() => {
       const [task] = tasks.splice(index, 1);
       tasks.splice(index + 1, 0, task);
       saveTasks();
-      renderTasks();
+      updateTaskList();
     }, 300); // Wait for the animation to complete
   }
 }
@@ -89,11 +87,12 @@ function editTask(id) {
 // Function to delete tasks
 function deleteTask(id) {
   const taskElement = document.getElementById(`task-${id}`);
-  taskElement.classList.add('delete');
+  animateTask(taskElement, 'delete');
+
   setTimeout(() => {
     tasks = tasks.filter(task => task.id !== id);
     saveTasks();
-    renderTasks();
+    updateTaskList();
   }, 300); // Wait for the animation to complete
 }
 
@@ -108,6 +107,7 @@ function loadTasks() {
   return storedTasks ? JSON.parse(storedTasks) : [];
 }
 
+// Function to create task
 function createTaskElement(task) {
   const taskElement = document.createElement('li');
   taskElement.id = `task-${task.id}`;
@@ -127,7 +127,7 @@ function createTaskElement(task) {
   taskElement.appendChild(description);
 
   const editInput = document.createElement('input');
-  editInput.type = '';
+  editInput.type = 'text';
   editInput.value = task.description;
   editInput.classList.add('edit-input');
   editInput.style.display = 'none';
@@ -183,27 +183,42 @@ function createTaskElement(task) {
 // Function to render tasks
 function renderTasks() {
   const taskListContainer = document.getElementById('taskList');
-  taskListContainer.innerHTML = ''; // Clear existing tasks
+  const fragment = document.createDocumentFragment();
 
   if (tasks.length === 0) {
     const emptyMessage = document.createElement('li');
     emptyMessage.classList.add('card');
     emptyMessage.innerHTML = `
       <h2>No Tasks to Display</h2>
-      <img src="./assets/img/undraw_to_do_re_jaef.svg" />
+      <img src="./assets/img/undraw_to_do_re_jaef.svg" loading="lazy" />
       <p>It looks like your todo list is empty right now.
         Take a moment to relax, or start adding tasks to stay productive!
       </p>
     `;
-    taskListContainer.appendChild(emptyMessage);
+    fragment.appendChild(emptyMessage);
   } else {
     tasks.forEach(task => {
       const taskElement = createTaskElement(task);
-      taskListContainer.appendChild(taskElement);
+      fragment.appendChild(taskElement);
     });
   }
+
+  taskListContainer.innerHTML = '';
+  taskListContainer.appendChild(fragment);
 }
 
+// Function to update task list
+function updateTaskList() {
+  renderTasks();
+}
+
+// Function to animate tasks
+function animateTask(taskElement, animationClass) {
+  taskElement.classList.add(animationClass);
+  setTimeout(() => {
+    taskElement.classList.remove(animationClass);
+  }, 300); // Match the duration of the animation
+}
 
 // Show task form when button is clicked
 const taskInputButton = document.getElementById('taskInputButton');
@@ -219,7 +234,6 @@ taskInputButton.addEventListener('click', () => {
 taskForm.addEventListener('submit', event => {
   event.preventDefault(); // Prevent form submission
   taskForm.style.display = 'none'; // Hide the task form after submission
-  // Add your logic to handle task addition here
   const taskInput = document.getElementById('taskInput');
   const taskDescription = taskInput.value.trim();
   if (taskDescription !== '') {
@@ -230,24 +244,19 @@ taskForm.addEventListener('submit', event => {
   }
 });
 
-
 // Get reference to the search input element
 const searchInput = document.getElementById('searchInput');
 
+let debounceTimeout;
 // Add event listener to the search input for capturing user input
 searchInput.addEventListener('input', function() {
-  const searchTerm = searchInput.value.toLowerCase(); // Get the search term and convert it to lowercase
-
-  // Filter tasks based on the search term
-  const filteredTasks = tasks.filter(task => {
-    return task.description.toLowerCase().includes(searchTerm); // Check if task description contains the search term
-  });
-
-  // Update the displayed task list with the filtered tasks
-  displayTasks(filteredTasks);
+  clearTimeout(debounceTimeout);
+  debounceTimeout = setTimeout(() => {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    const filteredTasks = tasks.filter(task => task.description.toLowerCase().includes(searchTerm));
+    displayTasks(filteredTasks);
+  }, 300); // Adjust debounce delay as needed
 });
-
-
 
 // Show search form when button is clicked
 const searchInputButton = document.getElementById('searchInputButton');
@@ -256,41 +265,39 @@ const searchForm = document.getElementById('searchForm');
 searchInputButton.addEventListener('click', () => {
   searchForm.style.display = searchForm.style.display === 'none' ? 'block' : 'none';
   searchForm.style.animation = 'fadeIn 0.3s ease-in-out';
-  // Show the task form
   document.getElementById('searchInput').focus(); // Auto-focus on the input field
 });
 
-// Hide task form when form is submitted
+// Hide search form when form is submitted
 searchForm.addEventListener('submit', event => {
   event.preventDefault(); // Prevent form submission
-  taskForm.style.display = 'none'; // Hide the task form after submission
-  // Add your logic to handle task addition here
+  searchForm.style.display = 'none'; // Hide the search form after submission
 });
 
-function displayTasks(tasks) {
-  const taskListContainer = document.getElementById('taskList'); // Get reference to the task list container element
 
-  // Clear the task list container before adding filtered tasks
-  taskListContainer.innerHTML = '';
+function displayTasks(tasks) {
+  const taskListContainer = document.getElementById('taskList');
+  const fragment = document.createDocumentFragment();
 
   if (tasks.length === 0) {
     const taskElement = document.createElement('li');
     taskElement.classList.add('card');
     taskElement.innerHTML = `
       <h2>No Results Found</h2>
-      <img src="./assets/img/undraw_not_found_re_bh2e.svg" />
+      <img src="./assets/img/undraw_not_found_re_bh2e.svg" loading="lazy"/>
       <p>Oops! It seems like there are no tasks matching your search criteria. But don't worry, you can easily add new tasks to your to-do list or try refining your search to find what you're looking for.</p>
     `;
-    taskListContainer.appendChild(taskElement);
+    fragment.appendChild(taskElement);
   } else {
-    // Loop through filtered tasks and create HTML elements to display each task
     tasks.forEach(task => {
       const taskElement = createTaskElement(task);
-      taskListContainer.appendChild(taskElement);
+      fragment.appendChild(taskElement);
     });
-  };
-}
+  }
 
+  taskListContainer.innerHTML = '';
+  taskListContainer.appendChild(fragment);
+}
 
 // Call displayTasks initially with all tasks
 displayTasks(tasks);
