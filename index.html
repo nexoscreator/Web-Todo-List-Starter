@@ -1,60 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=en>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset=UTF-8>
+  <meta name=viewport content="width=device-width, initial-scale=1.0">
   <title>To-Do List App</title>
-  <link rel="stylesheet" href="./assets/css/styles.css"> <!-- Link to your CSS file -->
+  <link rel=stylesheet href=./assets/css/styles.min.css>
 </head>
 
 <body>
   <header>
     <h2>To-Do List</h2>
     <nav>
-      <label for="searchInputButton" aria-label="Search tasks">
-        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <circle cx="9.77" cy="9.77" r="8.99"></circle>
-          <line x1="16.02" y1="16.49" x2="19.54" y2="20.00"></line>
+      <label for=searchInputButton aria-label="Search tasks">
+        <svg class=icon xmlns=http://www.w3.org/2000/svg viewBox="0 0 24 24">
+          <circle cx=9.77 cy=9.77 r=8.99></circle>
+          <line x1=16.02 y1=16.49 x2=19.54 y2=20.00></line>
         </svg>
       </label>
-      <input type="checkbox" id="searchInputButton" class="hidden">
-      <label for="darkModeToggle" aria-label="Toggle dark mode">
-        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M183.72,170.37a10.43,10.43,0,0,1-.90,3.79,11.20,11.20,0,0,1-5.74,5.73,10.43,10.43,0,0,1-3.78.89,1.99,1.99,0,0,0-1.52,3.18,10.83,10.83,0,1,0,15.12-15.12A1.99,1.99,0,0,0,183.72,170.37Z" transform="translate(-169.40 -166.46)"></path>
+      <input type=checkbox id=searchInputButton class=hidden>
+      <label for=darkModeToggle aria-label="Toggle dark mode">
+        <svg class=icon xmlns=http://www.w3.org/2000/svg viewBox="0 0 24 24">
+          <path d=M183.72,170.37a10.43,10.43,0,0,1-.90,3.79,11.20,11.20,0,0,1-5.74,5.73,10.43,10.43,0,0,1-3.78.89,1.99,1.99,0,0,0-1.52,3.18,10.83,10.83,0,1,0,15.12-15.12A1.99,1.99,0,0,0,183.72,170.37Z transform="translate(-169.40 -166.46)"></path>
         </svg>
       </label>
-      <input type="checkbox" id="darkModeToggle" class="hidden">
+      <input type=checkbox id=darkModeToggle class=hidden>
     </nav>
   </header>
-
   <main>
-    <ul id="taskList">
-      <!-- Task items will be dynamically added here -->
+    <ul id=taskList>
     </ul>
   </main>
-
   <footer>
-    <label for="taskInputButton" class="add-input btnB" aria-label="Add new task">
-      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <line x1="9.84" y1="16.01" x2="16.21" y2="16.01"></line>
-        <path d="M12.56,1.36C11.21,0.35,9.31,0.62,8.30,1.97C8.30,1.97,3.29,8.64,1.55,10.96C-0.19,13.28,1.45,16.15,1.45,16.15C1.45,16.15,4.70,16.90,6.41,14.61C8.13,12.33,13.16,5.62,13.16,5.62C14.17,4.27,13.90,2.37,12.56,1.36Z"></path>
-        <line x1="7.00" y1="3.71" x2="11.87" y2="7.36"></line>
+    <label for=taskInputButton class="add-input btnB" aria-label="Add new task">
+      <svg class=icon xmlns=http://www.w3.org/2000/svg viewBox="0 0 24 24">
+        <line x1=9.84 y1=16.01 x2=16.21 y2=16.01></line>
+        <path d=M12.56,1.36C11.21,0.35,9.31,0.62,8.30,1.97C8.30,1.97,3.29,8.64,1.55,10.96C-0.19,13.28,1.45,16.15,1.45,16.15C1.45,16.15,4.70,16.90,6.41,14.61C8.13,12.33,13.16,5.62,13.16,5.62C14.17,4.27,13.90,2.37,12.56,1.36Z></path>
+        <line x1=7.00 y1=3.71 x2=11.87 y2=7.36></line>
       </svg>
     </label>
-    <input type="checkbox" id="taskInputButton" class="hidden">
-    <form id="taskForm" aria-labelledby="taskInputButton">
-      <input type="text" id="taskInput" placeholder="Add a new task..." aria-label="New task">
-      <button type="submit" class="btnA">Add Task</button>
+    <input type=checkbox id=taskInputButton class=hidden>
+    <form id=taskForm aria-labelledby=taskInputButton>
+      <input type=text id=taskInput placeholder="Add a new task..." aria-label="New task">
+      <button type=submit class=btnA>Add Task</button>
     </form>
-    <form id="searchForm" aria-labelledby="searchInputButton">
-      <input type="text" id="searchInput" placeholder="Search tasks..." aria-label="Search tasks">
-      <button type="button" class="btnA">Search</button> <!-- Prevent form submission -->
+    <form id=searchForm aria-labelledby=searchInputButton>
+      <input type=text id=searchInput placeholder="Search tasks..." aria-label="Search tasks">
+      <button type=button class=btnA>Search</button>
     </form>
   </footer>
-
-  <script src="./js/app.js"></script>
-  <script src="./js/task.js"></script> <!-- Link to your JavaScript file -->
+  <script src=./js/app.min.js></script>
+  <script src=./js/task.min.js></script>
 </body>
 
 </html>
