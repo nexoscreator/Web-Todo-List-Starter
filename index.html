@@ -12,48 +12,49 @@
   <header>
     <h2>To-Do List</h2>
     <nav>
-      <span id="searchInputButton"><svg class='line' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-          <g transform='translate(2.000000, 2.000000)'>
-            <circle cx='9.76659044' cy='9.76659044' r='8.9885584'></circle>
-            <line x1='16.0183067' y1='16.4851259' x2='19.5423342' y2='20.0000001'></line>
-          </g>
-        </svg></span>
-      <label for="darkModeToggle"><svg class='line' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-          <g>
-            <path d='M183.72453,170.371a10.4306,10.4306,0,0,1-.8987,3.793,11.19849,11.19849,0,0,1-5.73738,5.72881,10.43255,10.43255,0,0,1-3.77582.89138,1.99388,1.99388,0,0,0-1.52447,3.18176,10.82936,10.82936,0,1,0,15.118-15.11819A1.99364,1.99364,0,0,0,183.72453,170.371Z' transform='translate(-169.3959 -166.45548)'></path>
-          </g>
-        </svg></label>
-      <input class="hidden" type="checkbox" id="darkModeToggle">
+      <label for="searchInputButton" aria-label="Search tasks">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <circle cx="9.77" cy="9.77" r="8.99"></circle>
+          <line x1="16.02" y1="16.49" x2="19.54" y2="20.00"></line>
+        </svg>
+      </label>
+      <input type="checkbox" id="searchInputButton" class="hidden">
+      <label for="darkModeToggle" aria-label="Toggle dark mode">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M183.72,170.37a10.43,10.43,0,0,1-.90,3.79,11.20,11.20,0,0,1-5.74,5.73,10.43,10.43,0,0,1-3.78.89,1.99,1.99,0,0,0-1.52,3.18,10.83,10.83,0,1,0,15.12-15.12A1.99,1.99,0,0,0,183.72,170.37Z" transform="translate(-169.40 -166.46)"></path>
+        </svg>
+      </label>
+      <input type="checkbox" id="darkModeToggle" class="hidden">
     </nav>
   </header>
+
   <main>
     <ul id="taskList">
       <!-- Task items will be dynamically added here -->
     </ul>
   </main>
+
   <footer>
-    <span id="taskInputButton" class="add-input btn">
-      <svg class='line' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-        <g transform='translate(3.500000, 3.500000)'>
-          <line x1='9.8352' y1='16.0078' x2='16.2122' y2='16.0078'></line>
-          <path d='M12.5578,1.3589 L12.5578,1.3589 C11.2138,0.3509 9.3078,0.6229 8.2998,1.9659 C8.2998,1.9659 3.2868,8.6439 1.5478,10.9609 C-0.1912,13.2789 1.4538,16.1509 1.4538,16.1509 C1.4538,16.1509 4.6978,16.8969 6.4118,14.6119 C8.1268,12.3279 13.1638,5.6169 13.1638,5.6169 C14.1718,4.2739 13.9008,2.3669 12.5578,1.3589 Z'></path>
-          <line x1='7.0041' y1='3.7114' x2='11.8681' y2='7.3624'></line>
-        </g>
+    <label for="taskInputButton" class="add-input btnB" aria-label="Add new task">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <line x1="9.84" y1="16.01" x2="16.21" y2="16.01"></line>
+        <path d="M12.56,1.36C11.21,0.35,9.31,0.62,8.30,1.97C8.30,1.97,3.29,8.64,1.55,10.96C-0.19,13.28,1.45,16.15,1.45,16.15C1.45,16.15,4.70,16.90,6.41,14.61C8.13,12.33,13.16,5.62,13.16,5.62C14.17,4.27,13.90,2.37,12.56,1.36Z"></path>
+        <line x1="7.00" y1="3.71" x2="11.87" y2="7.36"></line>
       </svg>
-    </span>
-    <form id="taskForm">
-      <input type="text" id="taskInput" placeholder="Add a new task...">
-      <button type="submit">Add Task</button>
+    </label>
+    <input type="checkbox" id="taskInputButton" class="hidden">
+    <form id="taskForm" aria-labelledby="taskInputButton">
+      <input type="text" id="taskInput" placeholder="Add a new task..." aria-label="New task">
+      <button type="submit" class="btnA">Add Task</button>
     </form>
-    <form id="searchForm">
-      <input type="text" id="searchInput" placeholder="Search tasks...">
-      <button type="submit">Search</button>
+    <form id="searchForm" aria-labelledby="searchInputButton">
+      <input type="text" id="searchInput" placeholder="Search tasks..." aria-label="Search tasks">
+      <button type="button" class="btnA">Search</button> <!-- Prevent form submission -->
     </form>
   </footer>
 
   <script src="./js/app.js"></script>
-  <script src="./js/task.js"></script>
-  <!-- Link to your JavaScript file -->
+  <script src="./js/task.js"></script> <!-- Link to your JavaScript file -->
 </body>
 
 </html>

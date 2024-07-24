@@ -1,16 +1,13 @@
 /* styles.css */
 
-/* Import Open Sans from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
-
-/* Import Nunito from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Nunito:wght@400;700&display=swap');
 
 :root {
   --primary: #6C63FF;
   --primary-drk: #463AFF;
   --accent: #06D19C;
-  --secondory: #4641FF;
+  --secondary: #4641FF;
 
   --fontA: 'Open Sans', sans-serif;
   --fontB: 'Nunito', sans-serif;
@@ -23,7 +20,6 @@
   --drk-bg: #333C44;
   --lines: #EEE;
 }
-
 
 /* Reset default margin and padding */
 * {
@@ -138,7 +134,15 @@ input[type="text"] {
   border-radius: 4px;
 }
 
-button {
+button{
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.btnA {
   padding: 10px 20px;
   font-size: 16px;
   width: 23%;
@@ -146,13 +150,12 @@ button {
   color: #fff;
   border: none;
   border-radius: 4px;
-  cursor: pointer;
 }
 
-.btn {
+.btnB {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-self: center;
+  justify-items: center;
   background-color: var(--accent);
   padding: 14px;
   border-radius: 50%;
@@ -171,8 +174,7 @@ button {
   font-size: 16px;
 }
 
-
-/* menu list */
+/* Menu list */
 .task-menu {
   position: relative;
 }
@@ -194,7 +196,7 @@ button {
   background: var(--pri-bg);
   border: 1px solid var(--lines);
   border-radius: 8px;
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin: 0;
   z-index: 2;
@@ -213,59 +215,6 @@ button {
   background: var(--alt-bg);
 }
 
-/* animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-100%);
-  }
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(100%);
-  }
-}
-
-.task.add {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-.task.up {
-  animation: slideUp 0.3s ease-in-out;
-}
-
-.task.down {
-  animation: slideDown 0.3s ease-in-out;
-}
-
-.task.delete {
-  animation: fadeOut 0.3s ease-in-out;
-}
 
 /* Hover effects */
 .task:hover {
@@ -274,12 +223,11 @@ button {
   transition: background-color 0.3s ease-in-out;
 }
 
-/* Hover */
-button:hover {
+.btnA:hover {
   background-color: var(--primary);
 }
 
-/* dark mode */
+/* Dark mode */
 .dark-mode {
   background-color: var(--heading);
   color: var(--alt-bg);
@@ -317,18 +265,73 @@ button:hover {
   background: var(--heading);
 }
 
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
 
-/* Large devices (desktops) */
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.task.add {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.task.up {
+  animation: slideUp 0.3s ease-in-out;
+}
+
+.task.down {
+  animation: slideDown 0.3s ease-in-out;
+}
+
+.task.delete {
+  animation: fadeOut 0.3s ease-in-out;
+}
+
+
+/* Responsive Styles */
 @media (min-width: 992px) {
   /* CSS rules for desktop layout */
 }
 
-/* Medium devices (tablets) */
 @media (min-width: 768px) and (max-width: 991px) {
   /* CSS rules for tablet layout */
 }
 
-/* Small devices (smartphones) */
 @media (max-width: 767px) {
   /* CSS rules for smartphone layout */
 }

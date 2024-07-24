@@ -1,3 +1,6 @@
+A simple and interactive To-Do List application built with HTML, CSS, and JavaScript. This application allows users to add, edit, search, and delete tasks while supporting a dark mode feature.
+
+
 ![GitHub Pages](https://img.shields.io/github/deployments/nexoscreator/Web-Todo-List-Starter/github-pages.svg?style=flat-square&color=cyan)
 ![GitHub Latest Release](https://img.shields.io/github/v/release/nexoscreator/Web-Todo-List-Starter.svg?style=flat-square&color=cyan)
 ![GitHub License](https://img.shields.io/github/license/nexoscreator/Web-Todo-List-Starter.svg?style=flat-square&color=cyan)
@@ -13,11 +16,11 @@ This is a simple web-based To-Do list application where users can add, edit, and
 ---
 
 ### Features
-- Add new tasks with descriptions
-- Edit existing tasks
-- Mark tasks as completed
-- Delete tasks
-- Search tasks by description
+- **Add Tasks**: Easily add new tasks to your list.
+- **Edit Tasks**: Update existing tasks with new information.
+- **Search Tasks**: Find specific tasks quickly with the search feature.
+- **Delete Tasks**: Remove tasks from your list as needed.
+- **Dark Mode**: Toggle dark mode for a better night-time viewing experience.
  
 ---
 
@@ -64,6 +67,7 @@ Provide step-by-step instructions on how to install and set up your project.
 > ### Searching Tasks
 >
 > - Enter a search query in the search input field to filter tasks based on their descriptions.
+> **Toggle Dark Mode**: Click the dark mode icon to switch between light and dark themes.
 
 ---
 
@@ -81,3 +85,8 @@ If you'd like to contribute to this project, please follow these step
 
 ### License
 This project is licensed under the MIT LICENCE - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- **Font Awesome**: Icons used in the application.
+- **Google Fonts**: For providing the font styles.
