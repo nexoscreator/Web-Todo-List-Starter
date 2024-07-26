@@ -75,14 +75,16 @@ function moveTaskDown(id) {
 }
 
 // Function to edit tasks
-function editTask(id) {
-  const taskElement = document.getElementById(`task-${id}`);
-  const description = taskElement.querySelector('p');
-  const editInput = taskElement.querySelector('.edit-input');
-  description.style.display = 'none';
-  editInput.style.display = 'inline-block';
-  editInput.focus();
+function editTask(id, newDescription) {
+  // Update the task description in the tasks array
+  const index = tasks.findIndex(task => task.id === id);
+  if (index !== -1 && newDescription.trim() !== '') {
+    tasks[index].description = newDescription;
+    saveTasks(); // Save tasks to localStorage
+    renderTasks(); // Update the UI
+  }
 }
+
 
 // Function to delete tasks
 function deleteTask(id) {
@@ -114,6 +116,7 @@ function createTaskElement(task) {
   taskElement.classList.add('task');
 
   const checkbox = document.createElement('input');
+  checkbox.id = `check-${task.id}`;
   checkbox.type = 'checkbox';
   checkbox.checked = task.completed;
   checkbox.addEventListener('change', () => toggleCompletion(task.id));
@@ -127,7 +130,8 @@ function createTaskElement(task) {
   taskElement.appendChild(description);
 
   const editInput = document.createElement('input');
-  editInput.type = 'text';
+  editInput.id = `edit-${task.id}`;
+  editInput.type  = 'text';
   editInput.value = task.description;
   editInput.classList.add('edit-input');
   editInput.style.display = 'none';
@@ -163,8 +167,20 @@ function createTaskElement(task) {
     description.style.display = 'none';
     editInput.style.display = 'inline-block';
     editInput.focus();
-  });
+  });  
 
+  editInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      const newDescription = editInput.value.trim();
+      if (newDescription !== '') {
+        editTask(task.id, newDescription);
+      } else {
+        alert('Task description cannot be empty.');
+        editInput.value = task.description;
+      }
+    }
+  });
+  
   editInput.addEventListener('blur', () => {
     const newDescription = editInput.value.trim();
     if (newDescription !== '') {
