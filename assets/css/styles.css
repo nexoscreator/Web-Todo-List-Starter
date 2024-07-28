@@ -77,7 +77,7 @@ main {
 
 .card {
   max-width: 400px;
-  height: 700px;
+  height: 525px;
   margin: 10px auto;
   display: flex;
   flex-direction: column;
