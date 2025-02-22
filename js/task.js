@@ -131,7 +131,7 @@ function createTaskElement(task) {
 
   const editInput = document.createElement('input');
   editInput.id = `edit-${task.id}`;
-  editInput.type  = 'text';
+  editInput.type = 'text';
   editInput.value = task.description;
   editInput.classList.add('edit-input');
   editInput.style.display = 'none';
@@ -167,7 +167,7 @@ function createTaskElement(task) {
     description.style.display = 'none';
     editInput.style.display = 'inline-block';
     editInput.focus();
-  });  
+  });
 
   editInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
@@ -180,7 +180,7 @@ function createTaskElement(task) {
       }
     }
   });
-  
+
   editInput.addEventListener('blur', () => {
     const newDescription = editInput.value.trim();
     if (newDescription !== '') {
@@ -265,7 +265,7 @@ const searchInput = document.getElementById('searchInput');
 
 let debounceTimeout;
 // Add event listener to the search input for capturing user input
-searchInput.addEventListener('input', function() {
+searchInput.addEventListener('input', function () {
   clearTimeout(debounceTimeout);
   debounceTimeout = setTimeout(() => {
     const searchTerm = searchInput.value.trim().toLowerCase();
