@@ -1,24 +1,24 @@
 /* styles.css */
 
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Nunito:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Nunito:wght@400;700&display=swap");
 
 :root {
-  --primary: #6C63FF;
-  --primary-drk: #463AFF;
-  --accent: #06D19C;
-  --secondary: #4641FF;
+  --primary: #6c63ff;
+  --primary-drk: #463aff;
+  --accent: #06d19c;
+  --secondary: #4641ff;
 
-  --fontA: 'Open Sans', sans-serif;
-  --fontB: 'Nunito', sans-serif;
+  --fontA: "Open Sans", sans-serif;
+  --fontB: "Nunito", sans-serif;
 
   --text: #666;
   --heading: #111;
 
   --pri-bg: #fff;
-  --alt-bg: #F7f7f7;
-  --drk-bg: #333C44;
-  --lines: #EEE;
+  --alt-bg: #f7f7f7;
+  --drk-bg: #333c44;
+  --lines: #eee;
 }
 
 /* Reset default margin and padding */
@@ -134,7 +134,7 @@ input[type="text"] {
   border-radius: 4px;
 }
 
-button{
+button {
   border: none;
   padding: 0;
   margin: 0;
@@ -202,7 +202,7 @@ button{
   z-index: 2;
 }
 
-.menu-input:checked+.menu-label+.menu-list {
+.menu-input:checked + .menu-label + .menu-list {
   display: block;
 }
 
@@ -214,7 +214,6 @@ button{
 .menu-list li:hover {
   background: var(--alt-bg);
 }
-
 
 /* Hover effects */
 .task:hover {
@@ -321,7 +320,6 @@ button{
 .task.delete {
   animation: fadeOut 0.3s ease-in-out;
 }
-
 
 /* Responsive Styles */
 @media (min-width: 992px) {
